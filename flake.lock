@@ -1,0 +1,39 @@
+{
+  "nodes": {
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1645057078,
+        "narHash": "sha256-uFaInZDKD/bQjdzePrsYvPOJzBMmQryxyZWBMEh6Yak=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "11b3b8dc852bf59646d3ad5342e5d13df41cdb81",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "src": "src"
+      }
+    },
+    "src": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-Kdm2WVc3I7Cs8q54XrPVBO67dJ3SATU0ErG54zv0ClE=",
+        "type": "tarball",
+        "url": "https://downloads.tuxfamily.org/godotengine/4.0/alpha2/godot-4.0-alpha2.tar.xz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://downloads.tuxfamily.org/godotengine/4.0/alpha2/godot-4.0-alpha2.tar.xz"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
