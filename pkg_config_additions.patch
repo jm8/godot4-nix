@@ -1,0 +1,30 @@
+--- godot-4.0-alpha2/platform/linuxbsd/detect.py	2022-02-09 03:46:02.000000000 -0500
++++ godot-4.0-alpha2-patched/platform/linuxbsd/detect.py	2022-02-17 10:23:44.182688228 -0500
+@@ -226,6 +226,11 @@
+     env.ParseConfig("pkg-config xrender --cflags --libs")
+     env.ParseConfig("pkg-config xi --cflags --libs")
+ 
++    env.ParseConfig("pkg-config xext --cflags --libs")
++    env.ParseConfig("pkg-config xfixes --cflags --libs")
++    env.ParseConfig("pkg-config glu --cflags --libs")
++    env.ParseConfig("pkg-config zlib --cflags --libs")
++
+     if env["touch"]:
+         env.Append(CPPDEFINES=["TOUCH_ENABLED"])
+ 
+@@ -339,6 +344,7 @@
+     if os.system("pkg-config --exists alsa") == 0:  # 0 means found
+         env["alsa"] = True
+         env.Append(CPPDEFINES=["ALSA_ENABLED", "ALSAMIDI_ENABLED"])
++        env.ParseConfig("pkg-config alsa --cflags --libs")
+     else:
+         print("Warning: ALSA libraries not found. Disabling the ALSA audio driver.")
+ 
+@@ -361,6 +367,7 @@
+         if env["udev"]:
+             if os.system("pkg-config --exists libudev") == 0:  # 0 means found
+                 env.Append(CPPDEFINES=["UDEV_ENABLED"])
++                env.ParseConfig("pkg-config libudev --cflags --libs")
+             else:
+                 print("Warning: libudev development libraries not found. Disabling controller hotplugging support.")
+     else:
