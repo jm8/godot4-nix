@@ -76,6 +76,6 @@
             --replace "Exec=godot" "Exec=$out/bin/godot"
         '';
       };
+      defaultPackage.x86_64-linux = self.packages.x86_64-linux.godot;
     };
-    defaultPackage.x86_64-linux = self.packages.x86_64-linux.godot;
 }
