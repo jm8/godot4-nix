@@ -16,7 +16,7 @@
           udev = true;
         };
     in {
-      defaultPackage.x86_64-linux = pkgs.stdenv.mkDerivation {
+      packages.x86_64-linux.godot = pkgs.stdenv.mkDerivation {
         pname = "godot";
         version = "4.0-alpha2";
 
@@ -32,8 +32,7 @@
           xorg.libX11
           xorg.libXcursor
           xorg.libXinerama
-          xorg.libXrandr
-          xorg.libXrender
+          xorg.libXrandr xorg.libXrender
           xorg.libXi
           xorg.libXext
           xorg.libXfixes
@@ -53,7 +52,7 @@
 
         outputs = ["out" "dev" "man"];
 
-        sconsFlags = "-j8 target=debug platform=linuxbsd";
+        sconsFlags = "-j 8 target=debug platform=linuxbsd";
 
         preConfigure = ''
           sconsFlags+=" ${
@@ -78,4 +77,5 @@
         '';
       };
     };
+    defaultPackage.x86_64-linux = self.packages.x86_64-linux.godot 
 }
