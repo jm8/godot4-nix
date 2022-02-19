@@ -1,7 +1,5 @@
 {
-  description = "Godot 4.0 alpha 1";
-
-  # https://github.com/NixOS/nixpkgs/blob/master/pkgs/development/tools/godot/default.nix
+  description = "Godot 4.0 alpha 1"; # https://github.com/NixOS/nixpkgs/blob/master/pkgs/development/tools/godot/default.nix
 
   inputs.nixpkgs.url = "github:nixos/nixpkgs";
 
@@ -47,13 +45,15 @@
           libGLU
           zlib
           yasm
+          vulkan-loader
+          mesa
         ];
 
         patches = [ ./pkg_config_additions.patch ./dont_clobber_environment.patch ];
 
         outputs = ["out" "dev" "man"];
 
-        sconsFlags = "target=release_debug platform=linuxbsd";
+        sconsFlags = "-j8 target=debug platform=linuxbsd";
 
         preConfigure = ''
           sconsFlags+=" ${

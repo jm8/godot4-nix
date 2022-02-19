@@ -1,6 +1,6 @@
 --- godot-4.0-alpha2/platform/linuxbsd/detect.py	2022-02-09 03:46:02.000000000 -0500
 +++ godot-4.0-alpha2-patched/platform/linuxbsd/detect.py	2022-02-17 10:23:44.182688228 -0500
-@@ -226,6 +226,11 @@
+@@ -226,6 +226,12 @@
      env.ParseConfig("pkg-config xrender --cflags --libs")
      env.ParseConfig("pkg-config xi --cflags --libs")
  
@@ -8,6 +8,7 @@
 +    env.ParseConfig("pkg-config xfixes --cflags --libs")
 +    env.ParseConfig("pkg-config glu --cflags --libs")
 +    env.ParseConfig("pkg-config zlib --cflags --libs")
++    env.ParseConfig("pkg-config vulkan --cflags --libs")
 +
      if env["touch"]:
          env.Append(CPPDEFINES=["TOUCH_ENABLED"])
