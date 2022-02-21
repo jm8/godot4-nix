@@ -45,7 +45,6 @@
           zlib
           yasm
           vulkan-loader
-          mesa
         ];
 
         patches = [ ./pkg_config_additions.patch ./dont_clobber_environment.patch ];
@@ -76,6 +75,19 @@
             --replace "Exec=godot" "Exec=$out/bin/godot"
         '';
       };
+
       defaultPackage.x86_64-linux = self.packages.x86_64-linux.godot;
+      
+      packages.x86_64-linux.godot-export-templates = self.packages.x86_64-linux.godot.overrideAttrs (oldAttrs: {
+        pname = "godot-export-templates";
+        sconsFlags = "-j 8 target=release platform=x11 tools=no";
+        installPhase = ''
+          # The godot export command expects the export templates at
+          # .../share/godot/templates/3.2.3.stable with 3.2.3 being the godot version.
+          mkdir -p "$out/share/godot/templates/4.0.alpha2"
+          cp bin/godot.x11.opt.64 $out/share/godot/templates/4.0.alpha2/linux_x11_64_release
+        '';
+        outputs = [ "out" ];
+      });
     };
 }
